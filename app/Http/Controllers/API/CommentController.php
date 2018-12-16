@@ -16,8 +16,8 @@ class CommentController extends BaseController
 public function index()
 {
     # code...
-    // $posts = Post::all();
-    // return $this->sendResponse($posts->toArray(), 'Posts read succesfully');
+    // $comments = Comment::where("post_id", "=", $id)->get();
+    // return $this->sendResponse($comments->toArray(), 'Comments read succesfully');
 }
 
 
@@ -53,12 +53,12 @@ public function store(Request $request)
 
 public function show(  $id)
 {
-    $comment = Comment::find($id);
+    $comment = Comment::where("post_id", "=", $id)->get();
     if (   is_null($comment)   ) {
         # code...
-        return $this->sendError(  'post not found ! ');
+        return $this->sendError(  'comment not found ! ');
     }
-    return $this->sendResponse($post->toArray(), 'Post read succesfully');
+    return $this->sendResponse($comment->toArray(), 'Comments read succesfully');
     
 }
 

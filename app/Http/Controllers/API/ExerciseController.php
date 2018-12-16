@@ -5,18 +5,19 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Post;
+use App\Exercise;
 use  Validator ;
 use Auth;
 
 
-class PostController extends BaseController  
+class ExerciseController extends BaseController  
 {
 
 public function index()
 {
     # code...
-    $posts = Post::all();
-    return $this->sendResponse($posts->toArray(), 'Posts read succesfully');
+    $exercises = Exercise::all();
+    return $this->sendResponse($exercises->toArray(), 'Exercises read succesfully');
 }
 
 
@@ -26,8 +27,7 @@ public function store(Request $request, Post $post)
     $input = $request->all();
     $validator =    Validator::make($input, [
     'judul'=> 'required',
-    'isi'=> 'required',
-    'jenis'=> 'required'
+    'deskripsi'=> 'required',
     ] );
 
     if ($validator -> fails()) {
@@ -39,11 +39,9 @@ public function store(Request $request, Post $post)
     $post = $post->create([
             'user_id' => Auth::user()->id,
             'judul' => $request->judul,
-            'isi' => $request->isi,
-            'cover' => $request->cover,
-            'jenis' => $request->jenis
+            'deskripsi' => $request->deskripsi,
         ]);
-    return $this->sendResponse($post->toArray(), 'Post  created succesfully');
+    return $this->sendResponse($post->toArray(), 'Exercise created succesfully');
     
 }
 

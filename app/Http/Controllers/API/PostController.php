@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Post;
+use App\Comment;
 use  Validator ;
 use Auth;
 
@@ -27,7 +28,8 @@ public function store(Request $request, Post $post)
     $validator =    Validator::make($input, [
     'judul'=> 'required',
     'isi'=> 'required',
-    'jenis'=> 'required'
+    'jenis'=> 'required',
+    'cover' => 'nullable'
     ] );
 
     if ($validator -> fails()) {
@@ -35,14 +37,35 @@ public function store(Request $request, Post $post)
         return $this->sendError('error validation', $validator->errors());
     }
 
-    // $post = Post::create($input);
-    $post = $post->create([
+    if ($request->hasFile('cover'))
+    {
+            $cover = $request->file('cover');
+            // $path = Storage::putFileAs(
+            //     'avatars', $request->file('avatar'), $request->user()->id
+            // );
+            $filename = $cover->getClientOriginalName();
+            $path = Storage::disk('public_uploads')->put('covers', $filename); 
+            $post = $post->create([
             'user_id' => Auth::user()->id,
             'judul' => $request->judul,
             'isi' => $request->isi,
-            'cover' => $request->cover,
+            'cover' => $path,
             'jenis' => $request->jenis
+             
         ]);
+    }
+    else{
+        // $post = Post::create($input);
+        $post = $post->create([
+            'user_id' => Auth::user()->id,
+            'judul' => $request->judul,
+            'isi' => $request->isi,
+            'jenis' => $request->jenis,
+            'cover'=> $request->cover
+        ]);
+
+    }
+
     return $this->sendResponse($post->toArray(), 'Post  created succesfully');
     
 }

@@ -46,5 +46,6 @@ Route::middleware('jwt.auth')->group( function(){
 Route::middleware('jwt.auth')->group( function(){
     Route::resource('comments', 'API\CommentController') ;
     Route::post('/posts/{id}/comment', 'API\CommentController@store')->name('comment');
+    Route::get('/posts/{id}/comment', 'API\CommentController@show')->name('show.comment');
 } );
 
