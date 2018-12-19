@@ -17,3 +17,16 @@ Route::get('/', function () {
 
 
  
+
+Auth::routes();
+
+Route::get('/homes', 'HomeController@index')->name('home');
+Route::get('/home', 'PostController@index')->name('beranda');
+Route::get('/create', 'PostController@create')->name('create');
+Route::get('/show/{id}', 'PostController@show')->name('show');
+Route::delete('/home/{id}/delete', 'PostController@destroy')->name('post.destroy');
+Route::post('/create', 'PostController@store')->name('store');
+Route::get('/show/{id}/edit', 'PostController@edit')->name('edit');
+Route::patch('/show/{id}/update', 'PostController@update')->name('update');
+Route::post('/show/{id}/comment', 'PostController@comment')->name('comment');
+Route::delete('/show/{id}/comdelete', 'PostController@delcom')->name('comment.destroy');

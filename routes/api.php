@@ -21,10 +21,10 @@ Route::get('/', function () {
     return view('welcome');
 });
  
+
 Route::post('user/register', 'APIRegisterController@register');
 
 Route::post('user/login', 'APILoginController@login');
-
 
 Route::middleware('jwt.auth')->get('/users', function (Request $request) {
     return auth()->user();
@@ -47,5 +47,6 @@ Route::middleware('jwt.auth')->group( function(){
     Route::resource('comments', 'API\CommentController') ;
     Route::post('/posts/{id}/comment', 'API\CommentController@store')->name('comment');
     Route::get('/posts/{id}/comment', 'API\CommentController@show')->name('show.comment');
+
 } );
 
