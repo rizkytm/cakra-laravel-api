@@ -89,12 +89,12 @@ public function update(Request $request , Post $post)
 
 
 // delete book 
-public function destroy(Post $post)
+public function destroy(Post $post, Comment $comment)
 {
  
-    $post->delete();
+    $comment->delete();
 
-    return $this->sendResponse($post->toArray(), 'Post  deleted succesfully');
+    return $this->sendResponse($comment->toArray(), 'Comment  deleted succesfully');
     
 }
 

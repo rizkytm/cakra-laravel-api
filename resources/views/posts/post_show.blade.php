@@ -21,7 +21,7 @@
                     <div class="card-body">
                         @foreach($post->comment()->get() as $comment)
                             <h5>{{ $comment->user->name }} - {{ $comment->created_at->diffForHumans() }}
-                            <button class="float-right" type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#delete">Hapus</button>
+                            <button class="float-right" type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#delete{{$comment->id}}">Hapus</button>
                             </h5>
                             @include('commentdeletemodal')
                             <p>{{ $comment->message }}</p>
