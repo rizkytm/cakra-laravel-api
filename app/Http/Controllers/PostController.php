@@ -10,14 +10,14 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->get();
+        $posts = Post::orderBy('created_at', 'desc')->paginate(6);
 
         return view('posts.post', compact('posts'));
     }
 
     public function create()
     {
-    	return view('posts.create');
+    	return view('posts.write');
     }
 
     public function store(Request $request)
@@ -41,7 +41,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-        return view('posts.post_show', compact('post'));
+        return view('posts.show', compact('post'));
     }
 
     public function destroy($id)

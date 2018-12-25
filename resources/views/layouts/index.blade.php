@@ -7,15 +7,15 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<link rel="icon" href="template/assets/img/favicon.ico'">
+<link rel="icon" href="{{ url('template/assets/img/favicon.ico') }}">
 <title>Mediumish - A Medium style template by WowThemes.net</title>
 <!-- Bootstrap core CSS -->
-<link href="template/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="{{ url('template/assets/css/bootstrap.min.css') }}" rel="stylesheet">
 <!-- Fonts -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
 <!-- Custom styles for this template -->
-<link href="template/assets/css/mediumish.css" rel="stylesheet">
+<link href="{{ url('template/assets/css/mediumish.css') }}" rel="stylesheet">
 </head>
 <body>
 
@@ -27,18 +27,18 @@
 </button>
 <div class="container">
 	<!-- Begin Logo -->
-	<a class="navbar-brand" href="index.html">
-	<img src="template/assets/img/logo.png" alt="logo">
+	<a class="navbar-brand" href="{{ route('beranda') }}">
+	<img src="{{ url('template/assets/img/logo.png') }}" alt="logo">
 	</a>
 	<!-- End Logo -->
 	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 		<!-- Begin Menu -->
 		<ul class="navbar-nav ml-auto">
-			<li class="nav-item active">
-			<a class="nav-link" href="index.html">Stories <span class="sr-only">(current)</span></a>
+			<li class="nav-item">
+			<a class="nav-link" href="{{ route('beranda') }}">Stories</a>
 			</li>
 			<li class="nav-item">
-			<a class="nav-link" href="post.html">Post</a>
+			<a class="nav-link" href="{{ route('create') }}">Create</a>
 			</li>
 			<li class="nav-item">
 			<a class="nav-link" href="author.html">Author</a>
@@ -78,13 +78,30 @@
 
 	@yield('content')
 
+<!-- Begin Footer
+================================================== -->
+<div class="container">
+	<div class="footer">
+		<p class="pull-left">
+			 Copyright &copy; 2018 Cara Asyik Belajar Sastra (CAKRA)
+		</p>
+		<p class="pull-right">
+			 Projek Akhir Mata Kuliah Manajemen Projek Perangkat Lunak
+		</p>
+		<div class="clearfix">
+		</div>
+	</div>
+</div>
+<!-- End Footer
+================================================== -->
 
 <!-- Bootstrap core JavaScript
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="template/assets/js/jquery.min.js"></script>
+<script src="{{ url('template/assets/js/jquery.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="template/assets/js/bootstrap.min.js"></script>
-<script src="template/assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="{{ url('template/assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ url('template/assets/js/ie10-viewport-bug-workaround.js') }}"></script>
+<script src="{{ url('template/assets/js/mediumish.js') }}"></script>
 </body>
 </html>
