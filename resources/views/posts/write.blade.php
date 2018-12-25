@@ -21,7 +21,7 @@
 		<h2><span>Tulis Sastra</span></h2>
 	</div>
 	
-	<form class="" action="{{ route('store') }}" method="post">
+	<form class="" action="{{ route('store') }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
 	<div class="form-group has-feedback {{ $errors->has('judul') ? ' has-error' : '' }}">
 		<label><strong>Judul</strong></label>
@@ -41,6 +41,16 @@
                     <option value="Naskah Drama">Naskah Drama</option>
                 </select>
             </div>
+
+    <div class="form-group">
+				<label for=""><strong>Gambar Cover</strong></label>
+				<input id="cover" type="file" class="form-control{{ $errors->has('cover') ? ' is-invalid' : '' }}" name="cover">
+				@if ($errors->has('cover'))
+					<span class="help-block">
+						<p>{{ $errors->first('cover') }}</p>
+					</span>
+				@endif
+			</div>
 
     <div class="form-group has-feedback {{ $errors->has('isi') ? ' has-error' : '' }}">
                 <label for=""><strong>Isi</strong></label>

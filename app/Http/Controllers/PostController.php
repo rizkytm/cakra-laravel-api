@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Comment;
+use Storage;
 
 class PostController extends Controller
 {
@@ -25,14 +26,31 @@ class PostController extends Controller
     	$this->validate(request(), [
     		'judul' => 'required',
     		'isi' => 'required|min:10',
+            'cover' => 'nullable|mimes:jpg,png,jpeg'
     	]);
 
-    	Post::create([
-    		'judul' => request('judul'),
-    		'isi' => request('isi'),	
-    		'user_id' => auth()->id(),
-    		'jenis' => request('jenis')
-    	]);
+        if($request->hasFile('cover'))
+        {
+            $cover = $request->file('cover');
+            $filename = $cover->getClientOriginalName();
+            $path = Storage::disk('public_uploads')->put('covers', $filename);
+            Post::create([
+            'judul' => request('judul'),
+            'isi' => request('isi'),    
+            'user_id' => auth()->id(),
+            'jenis' => request('jenis'),
+            'cover' => $path
+            ]);
+        }
+        else
+        {
+            Post::create([
+            'judul' => request('judul'),
+            'isi' => request('isi'),    
+            'user_id' => auth()->id(),
+            'jenis' => request('jenis')
+            ]);
+        }
     	
     	return redirect()->route('beranda')->with('success', 'Post Berhasil Ditambahkan');
     }
