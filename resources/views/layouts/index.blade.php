@@ -34,15 +34,12 @@
 	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 		<!-- Begin Menu -->
 		<ul class="navbar-nav ml-auto">
-			<li class="nav-item">
+			<!-- <li class="nav-item">
 			<a class="nav-link" href="{{ route('beranda') }}">Stories</a>
-			</li>
+			</li> -->
 			<li class="nav-item">
 			<a class="nav-link" href="{{ route('create') }}">Create</a>
-			</li>
-			<li class="nav-item">
-			<a class="nav-link" href="author.html">Author</a>
-			</li>
+			</li>			
 			
 							<li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -50,6 +47,7 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                	<a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

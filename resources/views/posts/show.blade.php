@@ -27,7 +27,7 @@
 					<div class="col-md-10">
 						<a class="link-dark" href="author.html">Sal</a><!-- <a href="#" class="btn follow">Follow</a> -->
 						
-						<span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">6 min read</span>
+						<span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">{{ $post->jenis }}</span>
 					</div>
 				</div>
 				<!-- End Top Menta -->
@@ -37,7 +37,7 @@
 			</div>
 
 			<!-- Begin Featured Image -->
-			<img class="featured-image img-fluid" src="template/assets/img/demopic/10.jpg" alt="">
+			<img class="featured-image img-fluid" src="../uploads/{{ $post->cover }}" alt="">
 			<!-- End Featured Image -->
 
 			<!-- Begin Post Content -->
@@ -45,11 +45,36 @@
 				{!! nl2br(e($post->isi)) !!}
 			</div>
 			<!-- End Post Content -->
+			
+		<div class="section-title">
+			<br><br><br>
+			<h2><span>Komentar</span></h2>
+		</div>
+
+		@foreach($post->comment()->get() as $comment)
+                            <h5>{{ $comment->user->name }} - {{ $comment->created_at->diffForHumans() }}
+                            <button class="float-right" type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#delete{{$comment->id}}">Hapus</button>
+                            </h5>
+                            @include('commentdeletemodal')
+                            <p>{{ $comment->message }}</p>
+                        @endforeach
+
+		<form action="{{ route('comment', $post) }}" method="post" class="form-horizontal">
+                            {{ csrf_field() }}
+		
+                <textarea name="message" id="" rows="2" class="form-control" placeholder="Berikan komentar..."></textarea>
+            <br>
+            <input type="submit" value="Submit" class="btn btn-primary">
+           </form>
 
 		</div>
 		<!-- End Post -->
-
+		
+		
 	</div>
+
+	
+
 </div>
 <!-- End Article
 ================================================== -->

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -24,5 +26,11 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function profile()
+    {
+        $posts = Post::orderBy('created_at', 'desc')->where('user_id', '=', Auth::user()->id)->get();
+        return view('posts.profile', compact('posts'));
     }
 }

@@ -30,3 +30,4 @@ Route::get('/show/{id}/edit', 'PostController@edit')->name('edit');
 Route::patch('/show/{id}/update', 'PostController@update')->name('update');
 Route::post('/show/{id}/comment', 'PostController@comment')->name('comment');
 Route::delete('/show/{id}/comdelete', 'PostController@delcom')->name('comment.destroy');
+Route::get('/profile', 'HomeController@profile')->name('profile');
