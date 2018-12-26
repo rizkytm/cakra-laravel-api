@@ -33,3 +33,5 @@ Route::delete('/show/{id}/comdelete', 'PostController@delcom')->name('comment.de
 Route::get('/profile', 'HomeController@profile')->name('profile');
 Route::get('query', 'HomeController@search')->name('query');
 Route::get('/user/{user}', 'HomeController@user')->name('user');
+Route::post('/show/{id}/like', 'PostController@like')->name('like');
+Route::delete('/show/{id}/dislike', 'PostController@dislike')->name('dislike');

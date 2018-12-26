@@ -24,19 +24,12 @@
             <div class="form-group has-feedback {{ $errors->has('jenis') ? ' has-error' : '' }}">
                 <label for="">Jenis Sastra</label>
                 <select name="jenis" class="form-control">                    
-                    <option value="Cerita Pendek"
-                    @if($post->jenis === "Cerita Pendek")
-                        selected
-                    @endif
-                        >Cerita Pendek</option>
-                    <option value="Puisi/Pantun"
-                    @if($post->jenis === "Puisi/Pantun")
-                        selected
-                    @endif>Puisi/Pantun</option>
-                    <option value="Naskah Drama"
-                    @if($post->jenis === "Naskah Drama")
-                        selected
-                    @endif>Naskah Drama</option>
+                    <option value="{{ $category->id }}"
+                        @if($category->id === $post->category_id)
+                            selected
+                            @endif>
+                        {{ $category->name }}
+                    </option>
                 </select>
             </div>         
             

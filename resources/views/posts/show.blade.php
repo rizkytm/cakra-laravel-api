@@ -27,7 +27,7 @@
 					<div class="col-md-10">
 						<a class="link-dark" href="author.html">Sal</a><!-- <a href="#" class="btn follow">Follow</a> -->
 						
-						<span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">{{ $post->jenis }}</span>
+						<span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">{{ $post->category->name }}</span>
 					</div>
 				</div>
 				<!-- End Top Menta -->
@@ -48,7 +48,21 @@
 			
 		<div class="section-title">
 			<br><br><br>
-			<h2><span>Komentar</span></h2>
+			<h2><span>Komentar</span>{{ $countlikes }}
+				@if($ceklike === 1)
+				<form class="" action="{{ route('dislike', $post) }}" method="post">
+            		{{ csrf_field() }}
+            		{{method_field('delete')}}            		
+					<button class="float-right" type="submit" class="btn btn-xs btn-danger">Tidak Suka</button>
+				</form>
+				@else
+				<form class="" action="{{ route('like', $post) }}" method="post">
+            		{{ csrf_field() }}            		
+					<button class="float-right" type="submit" class="btn btn-xs btn-danger">Suka</button>
+				</form>
+				@endif
+			</h2>
+
 		</div>
 
 		@foreach($post->comment()->get() as $comment)

@@ -21,11 +21,12 @@
 		<h2><span>Tulis Sastra</span></h2>
 	</div>
 	
-	<form class="" action="{{ route('store') }}" method="post" enctype="multipart/form-data">
+	<form class="" action="{{ route('update', $post) }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
+            {{ method_field('PATCH') }}
 	<div class="form-group has-feedback {{ $errors->has('judul') ? ' has-error' : '' }}">
 		<label><strong>Judul</strong></label>
-		<input class="form-control" name="judul" type="text" placeholder="Judul karya sastra" value="{{ old('judul') }}">
+		<input class="form-control" name="judul" type="text" placeholder="Judul karya sastra" value="{{ $post->judul }}">
 				@if ($errors->has('judul'))
                     <span class="help-block">
                         <p>{{ $errors->first('judul') }}</p>
@@ -37,7 +38,12 @@
                 <label for=""><strong>Jenis Sastra</strong></label>
                 <select name="category_id" id="" class="form-control">
 					@foreach ($categories as $category)
-						<option value="{{ $category->id }}">{{ $category->name }}</option>
+						<option value="{{ $category->id }}"
+                        @if($category->id === $post->category_id)
+                            selected
+                            @endif>
+                        {{ $category->name }}
+                    </option>
 					@endforeach
 				</select>
             </div>
@@ -54,7 +60,7 @@
 
     <div class="form-group has-feedback {{ $errors->has('isi') ? ' has-error' : '' }}">
                 <label for=""><strong>Isi</strong></label>
-                <textarea name="isi" rows="5" class="form-control" placeholder="Isi karya sastra">{{ old('isi') }}</textarea>
+                <textarea name="isi" rows="5" class="form-control" placeholder="Isi karya sastra">{{ $post->isi }}</textarea>
                 @if ($errors->has('isi'))
                     <span class="help-block">
                         <p>{{ $errors->first('isi') }}</p>
