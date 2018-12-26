@@ -103,7 +103,7 @@ public function update(Request $request , Post $post)
     $input = $request->all();
     $validator =    Validator::make($input, [
     'judul'=> 'required',
-    'materi'=> 'required' 
+    'isi'=> 'required' 
     ] );
 
     if ($validator -> fails()) {
@@ -111,7 +111,7 @@ public function update(Request $request , Post $post)
         return $this->sendError('error validation', $validator->errors());
     }
     $post->judul =  $input['judul'];
-    $post->materi =  $input['materi'];
+    $post->materi =  $input['isi'];
     $post->save();
     return $this->sendResponse($post->toArray(), 'Post  updated succesfully');
     
