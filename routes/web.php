@@ -22,6 +22,18 @@ Route::get('/', function () {
    Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
    Route::get('logout/', 'Auth\AdminLoginController@logout')->name('admin.logout');
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
+
+    Route::get('/posttable', 'AdminController@poststable')->name('postadmin.view');
+    Route::delete('/{post}/delete', 'AdminController@destroy')->name('postadmin.destroy');
+	Route::get('/{post}/edit', 'AdminController@edit')->name('postadmin.edit');
+	Route::patch('/{post}/edit', 'AdminController@update')->name('postadmin.update');
+
+	Route::get('/commentstable', 'AdminController@commentstable')->name('commentsadmin.view');
+	Route::delete('/{comment}', 'AdminController@commentsdestroy')->name('commentsadmin.destroy');
+
+	Route::get('/userstable', 'AdminController@userstable')->name('usersadmin.view');
+	Route::delete('/delete/{user}', 'AdminController@usersdestroy')->name('usersadmin.destroy');
+
   });
 
 Auth::routes();
