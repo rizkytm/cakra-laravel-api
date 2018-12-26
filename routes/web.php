@@ -31,3 +31,5 @@ Route::patch('/show/{id}/update', 'PostController@update')->name('update');
 Route::post('/show/{id}/comment', 'PostController@comment')->name('comment');
 Route::delete('/show/{id}/comdelete', 'PostController@delcom')->name('comment.destroy');
 Route::get('/profile', 'HomeController@profile')->name('profile');
+Route::get('query', 'HomeController@search')->name('query');
+Route::get('/user/{user}', 'HomeController@user')->name('user');

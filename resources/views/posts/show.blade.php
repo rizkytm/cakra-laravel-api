@@ -53,8 +53,12 @@
 
 		@foreach($post->comment()->get() as $comment)
                             <h5>{{ $comment->user->name }} - {{ $comment->created_at->diffForHumans() }}
+                            @if($comment->user_id === Auth::user()->id)
                             <button class="float-right" type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#delete{{$comment->id}}">Hapus</button>
                             </h5>
+                            @else
+                            
+                            @endif
                             @include('commentdeletemodal')
                             <p>{{ $comment->message }}</p>
                         @endforeach
