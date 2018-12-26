@@ -28,8 +28,9 @@ public function store(Request $request, Post $post)
     $validator =    Validator::make($input, [
     'judul'=> 'required',
     'isi'=> 'required',
-    'jenis'=> 'required',
-    'cover' => 'nullable'
+    'category_id'=> 'required',
+    'cover' => 'nullable',
+    'user_id' => 'required'
     ] );
 
     if ($validator -> fails()) {
@@ -37,34 +38,42 @@ public function store(Request $request, Post $post)
         return $this->sendError('error validation', $validator->errors());
     }
 
-    if ($request->hasFile('cover'))
-    {
-            $cover = $request->file('cover');
-            // $path = Storage::putFileAs(
-            //     'avatars', $request->file('avatar'), $request->user()->id
-            // );
-            $filename = $cover->getClientOriginalName();
-            $path = Storage::disk('public_uploads')->put('covers', $filename); 
-            $post = $post->create([
-            'user_id' => Auth::user()->id,
-            'judul' => $request->judul,
-            'isi' => $request->isi,
-            'cover' => $path,
-            'jenis' => $request->jenis
+    // if ($request->hasFile('cover'))
+    // {
+    //         // $cover = $request->file('cover');
+    //         // // $path = Storage::putFileAs(
+    //         // //     'avatars', $request->file('avatar'), $request->user()->id
+    //         // // );
+    //         // $filename = $cover->getClientOriginalName();
+    //         // $path = Storage::disk('public_uploads')->put('covers', $filename); 
+    //         $post = $post->create([
+    //         'user_id' => $request->user_id,
+    //         'judul' => $request->judul,
+    //         'isi' => $request->isi,
+    //         'cover' => $request->cover,
+    //         'category_id' => $request->category_id
              
-        ]);
-    }
-    else{
-        // $post = Post::create($input);
-        $post = $post->create([
-            'user_id' => Auth::user()->id,
+    //     ]);
+    // }
+    // else{
+    //     // $post = Post::create($input);
+    //     $post = $post->create([
+    //         'user_id' => Auth::user()->id,
+    //         'judul' => $request->judul,
+    //         'isi' => $request->isi,
+    //         'jenis' => $request->jenis,
+    //         'cover'=> $request->cover
+    //     ]);
+
+    // }
+
+    $post = $post->create([
+            'user_id' => $request->user_id,
             'judul' => $request->judul,
             'isi' => $request->isi,
-            'jenis' => $request->jenis,
+            'category_id' => $request->category_id,
             'cover'=> $request->cover
         ]);
-
-    }
 
     return $this->sendResponse($post->toArray(), 'Post  created succesfully');
     
