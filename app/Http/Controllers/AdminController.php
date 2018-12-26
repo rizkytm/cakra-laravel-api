@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 use App\Comment;
+use App\Category;
 use Auth;
 
 class AdminController extends Controller
@@ -82,5 +83,37 @@ class AdminController extends Controller
         $user->delete();
 
         return redirect()->back()->with('danger', 'User Berhasil Dihapus');
+    }
+
+    public function categoriestable()
+    {
+        $categories = Category::all();
+
+        return view('admin.categoriestable', compact('categories'));
+    }
+
+    public function categorydestroy($id)
+    {
+        $category = Category::find($id);
+        $category->delete();
+
+        return redirect()->back()->with('danger', 'Kategori Berhasil Dihapus');
+    }
+
+    public function updatekategori($id, Request $request)
+    {
+        $categories = Category::find($id);
+        $categories->name = $request->input('kategori');
+        $categories->save();
+
+        return redirect()->back()->with('success', 'Kategori Berhasil Diedit');
+    }
+
+    public function storekategori(Request $request)
+    {
+        Category::create([
+            'name' => request('name')
+        ]);
+        return redirect()->back()->with('success', 'Kategori Berhasil Ditambahkan');
     }
 }

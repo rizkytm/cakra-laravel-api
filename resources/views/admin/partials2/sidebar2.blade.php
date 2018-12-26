@@ -14,6 +14,9 @@
                         <li>
                         <a href="{{ route('usersadmin.view') }}"><i class="fa fa-table fa-fw"></i> Manage Users</a>
                         </li>
+                        <li>
+                        <a href="{{ route('categoriesadmin.view') }}"><i class="fa fa-table fa-fw"></i> Manage Categories</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

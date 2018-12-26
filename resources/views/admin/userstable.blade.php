@@ -92,7 +92,7 @@
                                             <td>
                                             							
 							@if($user->name != "Admin")
-							<button type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deleteuser">Hapus</button>
+							<button type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deleteuser{{$user->id}}">Hapus</button>
                             @endif
 						</td>
                                         </tr>

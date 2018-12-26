@@ -29,10 +29,15 @@ Route::get('/', function () {
 	Route::patch('/{post}/edit', 'AdminController@update')->name('postadmin.update');
 
 	Route::get('/commentstable', 'AdminController@commentstable')->name('commentsadmin.view');
-	Route::delete('/{comment}', 'AdminController@commentsdestroy')->name('commentsadmin.destroy');
+	Route::delete('/deletecomment/{comment}', 'AdminController@commentsdestroy')->name('commentsadmin.destroy');
 
 	Route::get('/userstable', 'AdminController@userstable')->name('usersadmin.view');
-	Route::delete('/delete/{user}', 'AdminController@usersdestroy')->name('usersadmin.destroy');
+	Route::delete('/deleteuser/{user}', 'AdminController@usersdestroy')->name('usersadmin.destroy');
+
+	Route::get('/categoriestable', 'AdminController@categoriestable')->name('categoriesadmin.view');
+	Route::post('/tambahkategori', 'AdminController@storekategori')->name('store.kategori');
+	Route::delete('/deletecategory/{category}', 'AdminController@categorydestroy')->name('categoriesadmin.destroy');
+	Route::patch('/categoriestable/{id}/update', 'AdminController@updatekategori')->name('update.kategori');
 
   });
 

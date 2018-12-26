@@ -73,8 +73,6 @@
                                             <th>Category</th>
                                             <th>Owner</th>
                                             <th>Content</th>
-                                            <th>Video</th>
-                                            <th>PDF</th>
                                             <th>Created at</th>
                                             <th>Updated at</th>
                                             <th>Action</th>
@@ -89,19 +87,17 @@
                                         <tr>
                                             <td><?php echo $counter++; ?></td>
                                             <td>{{ $post->id }}</td>
-                                            <td>{{ $post->title }}</td>
+                                            <td>{{ $post->judul }}</td>
                                             <td>{{ $post->category->name }}</td>
                                             <td>{{ $users->name }}</td>
-                                            <td>{{ $post->content }}</td>
-                                            <td>{{ $post->video }}</td>
-                                            <td>{{ $post->pdf }}</td>
+                                            <td>{{ str_limit($post->isi, 100, ' ...') }}</td>
                                             <td>{{ $post->created_at }}</td>
                                             <td>{{ $post->updated_at }}</td>
                                             <td>
-                                            	<a href="{{ route('postadmin.edit', $post) }}" class="btn btn-primary">Edit</a>
+                                            	<a href="{{ route('show', $post) }}" class="btn btn-primary">Show</a>
 						
 							
-							<button type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deletepost">Hapus</button>
+							<button type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deletepost{{$post->id}}">Hapus</button>
 						</td>
                                         </tr>
                                         @include('admin.modal.modalpost')

@@ -45,32 +45,41 @@
 
         @include('admin.partials2.sidebar2')
 
-        <div id="page-wrapper">            
-            <div class="row">                
-                <div class="col-lg-12">                    
-                    <h1 class="page-header">Manage Comments</h1>
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Manage Categories</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <div class="row">                
+            <div class="row">
                 <div class="col-lg-12">
-                @include('layouts.partials._alerts')                    
+                    @include('layouts.partials._alerts')
                     <div class="panel panel-default">                    	
                         <div class="panel-heading">
-                            Comments Table
+                            Categories Table
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                            <form class="form-inline" action="{{ route('store.kategori') }}" method="post">
+                              {{ csrf_field() }}
+                              {{ method_field('POST') }}
+                              <div class="form-group mx-sm-3 mb-2">
+                              <label for="exampleInputEmail1">Tambah Kategori</label>
+                              <input name="name" type="text" class="form-control" id="name" placeholder="Nama Kategori">
+                              <button type="submit" class="btn btn-primary">Tambah</button>
+                            </div>
+                          </form>
+                          <br>
                             <div class="table-responsive">
                             	
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Title</th>
-                                            <th>User</th>
-                                            <th>Message</th>
+                                            <th>Post ID</th>
+                                            <th>Nama Kategori</th>
                                             <th>Created at</th>
                                             <th>Updated at</th>
                                             <th>Action</th>
@@ -78,28 +87,23 @@
                                     </thead>
                                     <tbody>
                                     	<?php $counter=1; ?>
+                                    	@foreach ($categories as $category)
                                     	
-                                    	
-                                    	@foreach($posts as $post)
-                                    	@foreach($post->comment()->get() as $comment)
-                                    	@foreach($post->user()->get() as $users)
-
                                         <tr>
                                             <td><?php echo $counter++; ?></td>
-                                            <td>{{ $post->judul }}</td>
-                                            <td>{{ $comment->user->name }}</td>
-                                            <td>{{ $comment->message }}</td>
-                                            <td>{{ $comment->created_at }}</td>
-                                            <td>{{ $comment->updated_at }}</td>
+                                            <td>{{ $category->id }}</td>
+                                            <td>{{ $category->name }}</td>
+                                            <td>{{ $category->created_at }}</td>
+                                            <td>{{ $category->updated_at }}</td>
                                             <td>
-                                            							
+                                            	<button type="submit" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#editcategory{{$category->id}}" >Edit</button>
+                                                @include('admin.modal.modalcategory')
+						
 							
-							<button type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deletecomment{{$comment->id}}">Hapus</button>
+							<button type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#deletecategory{{$category->id}}">Hapus</button>
 						</td>
                                         </tr>
-                                        @include('admin.modal.modalcomment')
-                                        @endforeach
-                                        @endforeach
+                                        @include('admin.modal.modalcategory')
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -136,6 +140,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{{ url('assets/template/dist/js/sb-admin-2.js') }}"></script>
+    
 
 </body>
 
