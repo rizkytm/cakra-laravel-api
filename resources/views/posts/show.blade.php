@@ -27,7 +27,7 @@
 					<div class="col-md-10">
 						<a class="link-dark" href="author.html">Sal</a><!-- <a href="#" class="btn follow">Follow</a> -->
 						
-						<span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">{{ $post->category->name }}</span>
+						<span class="post-date">{{ $post->created_at }}</span><span class="dot"></span><span class="post-read">{{ $post->category->name }}</span>
 					</div>
 				</div>
 				<!-- End Top Menta -->
