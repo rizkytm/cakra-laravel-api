@@ -54,7 +54,7 @@
 			
 		<div class="section-title">
 			<br><br><br>
-			<h2><span>Komentar</span>{{ $countlikes }}
+			<h6>{{ $countlikes }} suka
 				@if($ceklike === 1)
 				<form class="" action="{{ route('dislike', $post) }}" method="post">
             		{{ csrf_field() }}
@@ -67,6 +67,8 @@
 					<button class="float-right" type="submit" class="btn btn-xs btn-danger">Suka</button>
 				</form>
 				@endif
+			</h6>
+				<h2><span>Komentar</span>
 			</h2>
 
 		</div>

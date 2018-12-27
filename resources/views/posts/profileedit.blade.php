@@ -105,7 +105,7 @@
 									</span><br/>
 									<span class="post-date">{{ $post->created_at }}</span><span class="dot"></span><span class="post-read">{{ $post->jenis }}</span>
 									</span>
-									<a class="float-right" class="btn btn-xs btn-danger" href="{{ route('edit', $post) }}">Edit</a>
+									<button class="float-right" class="btn btn-xs btn-danger" href="{{ route('edit', $post) }}">Edit</button>
 									<button class="float-right" type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#delete{{$post->id}}">Hapus</button>
 									@include('postdeletemodal')
 									
