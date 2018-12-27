@@ -85,6 +85,7 @@
 						</a>
 						<div class="card-block">
 							<h2 class="card-title"><a href="{{ route('show', $post) }}">{{ $post->judul}}</h4>
+								<a class="btn btn-xs btn-primary" href="{{ route('edit', $post) }}">Edit</a>
             	<div class="metafooter">
 								<div class="wrapfooter">
 									<span class="meta-footer-thumb">

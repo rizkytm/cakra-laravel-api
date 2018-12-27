@@ -57,6 +57,7 @@
 						</a>
 						<div class="card-block">
 							<h2 class="card-title"><a href="{{ route('show', $post) }}">{{ $post->judul}}</h4>
+								<a class="btn btn-xs btn-primary" href="{{ route('edit', $post) }}">Edit</a>
             	<div class="metafooter">
 								<div class="wrapfooter">
 									<span class="meta-footer-thumb">
@@ -77,7 +78,7 @@
 									</span><br/>
 									<span class="post-date">{{ $post->created_at }}</span><span class="dot"></span><span class="post-read">{{ $post->jenis }}</span>
 									</span>
-									<a class="float-right" class="btn btn-xs btn-danger" href="{{ route('edit', $post) }}">Edit</a>
+									
 									<button class="float-right" type="submit" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#delete{{$post->id}}">Hapus</button>
 									@include('postdeletemodal')
 									
