@@ -71,7 +71,7 @@
 </nav>
 <!-- End Nav
 ================================================== -->
-
+	@include('layouts.partials._alerts')
 	@yield('content')
 
 <!-- Begin Footer
