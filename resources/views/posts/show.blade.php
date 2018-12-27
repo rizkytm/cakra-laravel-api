@@ -24,11 +24,17 @@
 					<div class="col-md-2">
 						<a href="author.html"><img class="author-thumb" src="{{ url('default-photo.png') }}" alt="Avatar"></a>
 					</div>
+					@foreach ($post->user()->get() as $users)
 					<div class="col-md-10">
-						<a class="link-dark" href="author.html">Sal</a><!-- <a href="#" class="btn follow">Follow</a> -->
+						@if($users->name === Auth::user()->name)
+							<a href="{{ route('profile') }}">{{ $users->name }}</a>
+							@else
+							<a href="{{ route('user', $users) }}">{{ $users->name }}</a>
+							@endif
 						
 						<span class="post-date">{{ $post->created_at }}</span><span class="dot"></span><span class="post-read">{{ $post->category->name }}</span>
 					</div>
+					@endforeach
 				</div>
 				<!-- End Top Menta -->
 

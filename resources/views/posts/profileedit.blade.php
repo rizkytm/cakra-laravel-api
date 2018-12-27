@@ -11,7 +11,10 @@
 			<div class="mainheading">
 				<div class="row post-top-meta authorpage">
 					<div class="col-md-12 col-xs-12">
-						
+						@foreach($user as $us)
+						<form class="form-horizontal" action="{{ route('profile.edit', $us) }}" method="post" enctype="multipart/form-data">
+                		{{ csrf_field() }}
+						{{ method_field('PATCH') }}
 						<center>
 							<h1>{{ Auth::user()->name }}</h1>
 							<img class="author-thumb" src="{{ asset('uploads/'.Auth::user()->avatar) }}" alt="Sal">
@@ -24,21 +27,37 @@
                                         <strong>{{ $errors->first('avatar') }}</strong>
                                     </span>
                                 @endif
-                    	</div>              
+                    	</div>
+                    	<br>
+                   		<div class="col-sm-4">
+                    			@if(auth()->user()->avatar != null)
+
+                            	<a href=""
+                            	class="btn btn-danger"
+                            	onclick="event.preventDefault();
+                            	document.getElementById('remove-avatar').submit();"
+                            	>Hapus Avatar</a>
+
+                            	@endif
+
+                   		</div>
                    <br>
                
                    <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                    	@foreach($user as $us)
-                      <a href="{{ route('profile.editpage', $us) }}" class="btn btn-warning">Edit</a>
-                      @endforeach
+                      <button type="submit" class="btn btn-warning">Simpan</button>
                     </div>
                   </div>
               </center>
+              </form>
 
-                  
+                  <form action="{{ route('avatar.delete', $us) }}" id="remove-avatar" method="POST">
+                    	{{ csrf_field() }}
+                    	{{ method_field('DELETE') }}
+                    </form>
 					</center>
 				</div>
+				@endforeach
 					<!-- <div class="col-md-2 col-xs-12">
 						
 					</div> -->
@@ -62,7 +81,7 @@
 		@foreach ($post->user()->get() as $users)
 					<div class="card">
 						<a href="author.html">
-						<img class="img-fluid img-thumb" src="uploads/{{ $post->cover }}" alt="">
+						<img class="img-fluid img-thumb" src="{{ asset('uploads/'.$post->cover) }}" alt="">
 						</a>
 						<div class="card-block">
 							<h2 class="card-title"><a href="{{ route('show', $post) }}">{{ $post->judul}}</h4>

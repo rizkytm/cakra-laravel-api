@@ -59,3 +59,6 @@ Route::get('query', 'HomeController@search')->name('query');
 Route::get('/user/{user}', 'HomeController@user')->name('user');
 Route::post('/show/{id}/like', 'PostController@like')->name('like');
 Route::delete('/show/{id}/dislike', 'PostController@dislike')->name('dislike');
+Route::get('/profile/{user}/edit', 'HomeController@editpage')->name('profile.editpage');
+Route::patch('/profile/{user}/edit', 'HomeController@edit')->name('profile.edit');
+Route::delete('profil/{user}/edit', 'HomeController@destroy')->name('avatar.delete');

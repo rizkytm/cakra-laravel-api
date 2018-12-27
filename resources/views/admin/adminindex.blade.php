@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Bantu Kuliah</title>
+    <title>Cakra</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ url('assets/template/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
