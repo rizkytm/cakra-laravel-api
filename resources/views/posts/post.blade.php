@@ -27,7 +27,7 @@
 		@foreach ($post->user()->get() as $users)
 		<div class="card">
 			<a href="{{ route('show', $post) }}">
-				<img class="card-img-top  mx-auto d-block" src="uploads/{{ $post->cover }}" alt="" height="240px" width="350px">
+				<img class="card-img-top  mx-auto d-block" src="{{ asset('uploads/'.$post->cover) }}" alt="" height="240px" width="350px">
 			</a>
 			<div class="card-block">
 				<h2 class="card-title"><a href="{{ route('show', $post) }}">{{ $post->judul}}</a></h2>
@@ -39,7 +39,7 @@
 							<a href="{{ route('profile') }}">
 							@else
 							<a href="{{ route('user', $users) }}">
-							@endif<img class="author-thumb" src="{{ url('default-photo.png') }}" alt="Avatar"></a>
+							@endif<img class="author-thumb" src="{{ asset('uploads/'.Auth::user()->avatar) }}" alt="Avatar"></a>
 						</span>
 						<span class="author-meta">
 						<span class="post-name">

@@ -14,9 +14,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderBy('created_at', 'desc')->paginate(6);
-        $countlikes = Like::all();
 
-        return view('posts.post', compact('posts', 'countlikes'));
+        return view('posts.post', compact('posts'));
     }
 
     public function create()

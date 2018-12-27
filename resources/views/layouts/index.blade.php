@@ -7,8 +7,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<link rel="icon" href="{{ url('template/assets/img/favicon.ico') }}">
-<title>Mediumish - A Medium style template by WowThemes.net</title>
+<link rel="icon" href="{{ url('template/assets/img/cakra.png') }}">
+<title>Cakra</title>
 <!-- Bootstrap core CSS -->
 <link href="{{ url('template/assets/css/bootstrap.min.css') }}" rel="stylesheet">
 <!-- Fonts -->
@@ -28,7 +28,7 @@
 <div class="container">
 	<!-- Begin Logo -->
 	<a class="navbar-brand" href="{{ route('beranda') }}">
-	<img src="{{ url('template/assets/img/logo.png') }}" alt="logo">
+	<img src="{{ url('template/assets/img/cakra.png') }}" alt="logo">
 	</a>
 	<!-- End Logo -->
 	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
