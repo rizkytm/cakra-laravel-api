@@ -21,10 +21,16 @@
 
 				<!-- Begin Top Meta -->
 				<div class="row post-top-meta">
-					<div class="col-md-2">
-						<a href="author.html"><img class="author-thumb" src="{{ url('default-photo.png') }}" alt="Avatar"></a>
-					</div>
 					@foreach ($post->user()->get() as $users)
+					<div class="col-md-2">
+						@if($users->name === Auth::user()->name)
+										<a href="{{ route('profile') }}">
+										@else
+										<a href="{{ route('user', $users) }}">
+										@endif
+										<img class="author-thumb" src="{{ asset('uploads/'.Auth::user()->avatar) }}" alt="Avatar"></a>
+					</div>
+					
 					<div class="col-md-10">
 						@if($users->name === Auth::user()->name)
 							<a href="{{ route('profile') }}">{{ $users->name }}</a>

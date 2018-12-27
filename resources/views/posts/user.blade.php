@@ -13,8 +13,8 @@
 					<div class="col-md-12 col-xs-12">
 						
 						<center>
-							<h1>{{ Auth::user()->name }}</h1>
-							<img class="author-thumb" src="{{ asset('uploads/'.Auth::user()->avatar) }}" alt="Sal">
+							<h1>{{ $user->name }}</h1>
+							<img class="author-thumb" src="{{ asset('uploads/'.$user->avatar) }}" alt="Sal">
 							<br><br>
 						
               </center>
@@ -55,7 +55,7 @@
 									@else
 									<a href="{{ route('user', $users) }}">
 									@endif
-										<img class="author-thumb" src="{{ asset('uploads/'.Auth::user()->avatar) }}" alt="Sal">
+										<img class="author-thumb" src="{{ asset('uploads/'.$users->avatar) }}" alt="Sal">
 									</a>
 									</span>
 									<span class="author-meta">

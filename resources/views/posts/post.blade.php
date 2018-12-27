@@ -39,7 +39,7 @@
 							<a href="{{ route('profile') }}">
 							@else
 							<a href="{{ route('user', $users) }}">
-							@endif<img class="author-thumb" src="{{ asset('uploads/'.Auth::user()->avatar) }}" alt="Avatar"></a>
+							@endif<img class="author-thumb" src="{{ asset('uploads/'.$users->avatar) }}" alt="Avatar"></a>
 						</span>
 						<span class="author-meta">
 						<span class="post-name">
